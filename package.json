@@ -11,12 +11,12 @@
 	"devDependencies": {
 		"@nuxt/devtools": "latest",
 		"@types/node": "^18",
-		"nuxt": "^3.6.0",
 		"typescript": "latest"
 	},
 	"dependencies": {
 		"@flavorly/vanilla-components": "^0.7.53",
 		"@headlessui/vue": "^1.7.14",
-		"@popperjs/core": "^2.11.8"
+		"@popperjs/core": "^2.11.8",
+		"nuxt": "^3.6.0"
 	}
 }
