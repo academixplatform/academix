@@ -11,21 +11,18 @@ const items = [
 ];
 </script>
 <template>
-	<MainContainer current="Home">
+	<MainContainer>
 		<va-button @click="handleClick()">Button</va-button>
 
 		<div class="card-columns">
-			<va-card class="card" v-for="item in items" :key="item.id">
-				<va-card-title>{{ item.title }}</va-card-title>
-				<va-card-content>{{ item.description }}</va-card-content>
-			</va-card>
+			<ClassCard v-for="item in items" :key="item.id" :title="item.title" :description="item.description" />
 		</div>
 	</MainContainer>
 </template>
 
 <style scoped>
 .card-columns {
-	column-count: 4;
-	column-gap: 1rem;
+	display: flex;
+	gap: 1rem;
 }
 </style>

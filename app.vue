@@ -1,12 +1,9 @@
 <template>
-	<div>
-		<NuxtLayout>
-			<NuxtPage />
-		</NuxtLayout>
-	</div>
+	<NuxtLayout>
+		<NuxtPage />
+	</NuxtLayout>
 </template>
 
 <style lang="scss">
 @use "scss-reset/reset";
-
 </style>
