@@ -12,9 +12,12 @@
 		"@nuxt/devtools": "latest",
 		"@types/node": "^18",
 		"nuxt": "^3.6.0",
+		"sass": "^1.63.6",
+		"scss-reset": "^1.4.2",
 		"typescript": "latest"
 	},
 	"dependencies": {
 		"@vuestic/nuxt": "^1.0.14"
-	}
+	},
+	"packageManager": "yarn@3.6.0"
 }

@@ -5,5 +5,6 @@ const handleClick = async () => {
 };
 </script>
 <template>
-	<va-button @click="handleClick()"> Button </va-button>
+	<Sidebar />
+	<va-button @click="handleClick()">Button</va-button>
 </template>
