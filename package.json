@@ -10,17 +10,11 @@
 	},
 	"devDependencies": {
 		"@nuxt/devtools": "latest",
-		"@nuxtjs/tailwindcss": "^6.8.0",
-		"@tailwindcss/aspect-ratio": "^0.4.2",
-		"@tailwindcss/forms": "^0.5.3",
-		"@tailwindcss/typography": "^0.5.9",
 		"@types/node": "^18",
 		"nuxt": "^3.6.0",
 		"typescript": "latest"
 	},
 	"dependencies": {
-		"@flavorly/vanilla-components": "^0.7.53",
-		"@headlessui/vue": "^1.7.14",
-		"@popperjs/core": "^2.11.8"
+		"@vuestic/nuxt": "^1.0.14"
 	}
 }

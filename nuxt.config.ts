@@ -4,11 +4,10 @@ export default defineNuxtConfig({
 	typescript: {
 		strict: true,
 	},
-	modules: ["@nuxtjs/tailwindcss"],
 	postcss: {
 		plugins: {
-			tailwindcss: {},
 			autoprefixer: {},
 		},
 	},
+	modules: ["@vuestic/nuxt"]
 });
