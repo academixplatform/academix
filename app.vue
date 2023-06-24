@@ -8,4 +8,5 @@
 
 <style lang="scss">
 @use "scss-reset/reset";
+
 </style>

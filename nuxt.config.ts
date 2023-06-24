@@ -9,5 +9,13 @@ export default defineNuxtConfig({
 			autoprefixer: {},
 		},
 	},
-	modules: ["@vuestic/nuxt"]
+	modules: ["@vuestic/nuxt"],
+	nitro: {
+		esbuild: {
+			options: {
+				target: "esnext",
+			},
+		}
+	}
+	
 });

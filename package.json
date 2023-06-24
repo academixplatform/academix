@@ -17,7 +17,9 @@
 		"typescript": "latest"
 	},
 	"dependencies": {
-		"@vuestic/nuxt": "^1.0.14"
+		"@vuestic/nuxt": "^1.0.14",
+		"mysql2": "^3.4.1",
+		"sequelize": "^6.32.1"
 	},
 	"packageManager": "yarn@3.6.0"
 }
