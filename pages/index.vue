@@ -24,10 +24,14 @@ const items = [
 					name: item.teacherName,
 					email: 'jbiden@sd40.bc.ca',
 					phone: '(111) 111-1111',
-					profilePicture: "",
+					profilePicture: null,
 				}"
 			>
 			</ClassCard>
+		</div>
+
+		<div class="bottom-cards">
+			<p>Test</p>
 		</div>
 	</MainContainer>
 </template>
@@ -35,6 +39,9 @@ const items = [
 <style scoped>
 .card-columns {
 	display: flex;
+	justify-content: space-evenly;
 	gap: 1rem;
 }
+
+
 </style>

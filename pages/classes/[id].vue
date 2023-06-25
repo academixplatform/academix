@@ -10,28 +10,24 @@ const data = [
 		assignment: "Triangle Classification Worksheet",
 		marks: 20,
 		maxMarks: 27,
-		percentage: "86.5%",
 	},
 	{
 		date: "2023-04-30",
 		assignment: "Unit Test 2",
 		marks: 50,
 		maxMarks: 100,
-		percentage: "50.0%",
 	},
 	{
 		date: "2023-05-06",
 		assignment: "Final Exam",
 		marks: 30,
 		maxMarks: 37,
-		percentage: "82.2%",
 	},
 	{
 		date: "2023-01-06",
 		assignment: "Unit Test 1",
-		marks: 3,
+		marks: 23,
 		maxMarks: 55,
-		percentage: "7.4%",
 	},
 ];
 const initialSortBy = ref("date");
@@ -53,7 +49,7 @@ const initialSortingOrder = ref("asc" as const);
 			sortingFn: (a: string, b: string) => +a.replace('%', '') - +b.replace('%', ''),
 		},
 	]"
-		:items="data"
+		:items="data.map(x => ({ ...x, percentage: ((x.marks / x.maxMarks) * 100).toFixed(1) + '%' }))"
 		v-model:sort-by="initialSortBy"
 		v-model:sorting-order="initialSortingOrder"
 	>
@@ -72,8 +68,10 @@ const initialSortingOrder = ref("asc" as const);
 						((data.reduce((l, c) => l + c.marks, 0) / data.reduce((l, c) => l + c.maxMarks, 0)) * 100).toFixed(1) +
 						"%"
 					}}
-					({{ percentageToGrade((data.reduce((l, c) => l + c.marks, 0) / data.reduce((l, c) => l + c.maxMarks, 0)) * 100)
-
+					({{
+						percentageToGrade(
+							(data.reduce((l, c) => l + c.marks, 0) / data.reduce((l, c) => l + c.maxMarks, 0)) * 100
+						)
 					}})
 				</td>
 			</tr>

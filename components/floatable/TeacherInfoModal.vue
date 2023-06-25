@@ -40,7 +40,7 @@ const enabled = computed({
 }
 
 #teacher-modal-header {
-	margin-bottom: 3px;
+	margin-bottom: 50px;
 }
 </style>
 
