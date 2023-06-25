@@ -24,6 +24,7 @@ const items = [
 					name: item.teacherName,
 					email: 'jbiden@sd40.bc.ca',
 					phone: '(111) 111-1111',
+					profilePicture: "",
 				}"
 			>
 			</ClassCard>

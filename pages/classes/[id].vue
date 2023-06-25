@@ -72,7 +72,7 @@ const initialSortingOrder = ref("asc" as const);
 						((data.reduce((l, c) => l + c.marks, 0) / data.reduce((l, c) => l + c.maxMarks, 0)) * 100).toFixed(1) +
 						"%"
 					}}
-					({{ percentageToGrade((data.reduce((l, c) => l + c.marks, 0) / data.reduce((l, c) => l + c.maxMarks, 0)) * 100))
+					({{ percentageToGrade((data.reduce((l, c) => l + c.marks, 0) / data.reduce((l, c) => l + c.maxMarks, 0)) * 100)
 
 					}})
 				</td>

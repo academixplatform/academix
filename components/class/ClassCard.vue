@@ -9,6 +9,7 @@ const props = defineProps<{
 		name: string;
 		email: string;
 		phone: string;
+		profilePicture: string;
 	};
 }>();
 

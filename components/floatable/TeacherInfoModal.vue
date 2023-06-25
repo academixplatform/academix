@@ -45,7 +45,7 @@ const enabled = computed({
 </style>
 
 <template>
-	<va-modal ref="modal" v-model="localEnable">
+	<va-modal ref="modal" v-model="localEnable" hide-default-actions:true>
 		<div id="teacher-modal-header">
 			<img
 				id="teacher-modal-profilepicture"
@@ -58,7 +58,7 @@ const enabled = computed({
 		</div>
 		<div>
 			<p>
-				Email: <a href="mailto: {{teacher.email}}">{{ teacher.email }}</a>
+				Email: <a :href="`mailto:${teacher.email}`">{{ teacher.email }}</a>
 			</p>
 			<p>Phone: {{ teacher.phone }}</p>
 		</div>
