@@ -19,7 +19,7 @@ const router = useRouter();
 </script>
 <template>
 	<TeacherInfoModal :teacher="teacher" :enabled="showTeacherModal" @disabled="showTeacherModal = false"> </TeacherInfoModal>
-	<va-card>
+	<va-card class="class-card">
 		<va-card-title class="class-title">{{ title }}</va-card-title>
 		<va-card-content class="class-teacher" @click="showTeacherModal = true">{{ teacher.name }}</va-card-content>
 		<va-image
@@ -51,5 +51,9 @@ const router = useRouter();
 	color: black;
 	cursor: default;
 	user-select: none;
+}
+
+.class-card {
+	flex-basis: auto;
 }
 </style>

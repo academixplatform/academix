@@ -13,25 +13,27 @@ const items = [
 <template>
 	<MainContainer>
 		<va-button @click="handleClick()">Button</va-button>
-		<div class="card-columns">
-			<ClassCard
-				v-for="item in items"
-				:key="item.id"
-				:id="item.id"
-				:title="item.title"
-				:description="item.description"
-				:teacher="{
-					name: item.teacherName,
-					email: 'jbiden@sd40.bc.ca',
-					phone: '(111) 111-1111',
-					profilePicture: null,
-				}"
-			>
-			</ClassCard>
-		</div>
-
-		<div class="bottom-cards">
-			<p>Test</p>
+		<div class="cards">
+			<div class="card-columns">
+				<ClassCard
+					v-for="item in items"
+					:key="item.id"
+					:id="item.id"
+					:title="item.title"
+					:description="item.description"
+					:teacher="{
+						name: item.teacherName,
+						email: 'jbiden@sd40.bc.ca',
+						phone: '(111) 111-1111',
+						profilePicture: null,
+					}"
+				>
+				</ClassCard>
+			</div>
+			<hr />
+			<div class="card-columns">
+				<UpcomingEventsCard></UpcomingEventsCard>
+			</div>
 		</div>
 	</MainContainer>
 </template>
@@ -41,7 +43,12 @@ const items = [
 	display: flex;
 	justify-content: space-evenly;
 	gap: 1rem;
+	width: 100%;
+	margin-bottom: 30px;
 }
 
-
+.bottom-cards {
+	display: block;
+	width: 100%;
+}
 </style>

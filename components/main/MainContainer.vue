@@ -1,5 +1,4 @@
-<script lang="ts" setup>
-</script>
+<script lang="ts" setup></script>
 
 <template>
 	<main>
@@ -7,7 +6,7 @@
 	</main>
 </template>
 
-<style lang="scss">
+<style>
 main {
 	display: flex;
 }
