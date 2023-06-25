@@ -4,6 +4,7 @@ const router = useRouter();
 // See https://mui.com/material-ui/material-icons/ for icon list
 const sidebarItems = [
 	{ name: "Home", icon: "home", target: "/" },
+	{ name: "Schedule", icon: "schedule", target: "/schedule" },
 	{ name: "Classes", icon: "class", target: "/classes" },
 ];
 </script>
@@ -15,7 +16,7 @@ const sidebarItems = [
 			@click="router.push(item.target)"
 			class="card"
 			:key="item.name"
-			:active="item.target === route.path"
+			:active="item.target === route.path.replace(/(?<=.)\/.+/, '')"
 		>
 			<va-popover placement="right" :message="item.name" :hover-out-timeout="0" :hover-over-timeout="0">
 				<va-sidebar-item-content>

@@ -39,14 +39,38 @@ export const Course = sequelize.define(
 		name: {
 			type: DataTypes.TEXT,
 			allowNull: false,
+		}
+	},
+	{}
+);
+
+
+export const Teacher = sequelize.define(
+	"teacher",
+	{
+		id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
 		},
-        teacher: {
+		name: {
+			type: DataTypes.TEXT,
+			allowNull: false,
+		},
+        email: {
+            type: DataTypes.TEXT,
+            allowNull: false
+        },
+        phone: {
             type: DataTypes.TEXT,
             allowNull: false
         }
 	},
 	{}
 );
+
+Course.hasOne(Teacher);
+Teacher.hasMany(Course);
 
 export const Attendance = sequelize.define(
     "attendance",

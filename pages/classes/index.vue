@@ -3,8 +3,6 @@
 	<MainContainer>
 		<h1>lorem</h1>
 	</MainContainer>
-	<ClassCard>
-	</ClassCard>
 	
 </template>
 
