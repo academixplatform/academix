@@ -15,7 +15,12 @@ export default defineNuxtConfig({
 			options: {
 				target: "esnext",
 			},
-		}
-	}
-	
+		},
+	},
+	components: [
+		{
+			path: "~/components",
+			pathPrefix: false,
+		},
+	],
 });

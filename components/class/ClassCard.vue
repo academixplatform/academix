@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import TeacherInfoModal from "../floatable/TeacherInfoModal.vue";
 const props = defineProps<{
 	id: string;
 	title: string;
@@ -16,7 +17,7 @@ const showTeacherModal = ref(false);
 const router = useRouter();
 </script>
 <template>
-	<TeacherInfoModal :enabled="showTeacherModal" />
+	<TeacherInfoModal :teacher="teacher" :enabled="showTeacherModal" @disabled="showTeacherModal = false"> </TeacherInfoModal>
 	<va-card>
 		<va-card-title class="class-title">{{ title }}</va-card-title>
 		<va-card-content class="class-teacher" @click="showTeacherModal = true">{{ teacher.name }}</va-card-content>
@@ -47,5 +48,7 @@ const router = useRouter();
 
 .class-teacher {
 	color: black;
+	cursor: default;
+	user-select: none;
 }
 </style>
