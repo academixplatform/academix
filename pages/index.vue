@@ -3,6 +3,9 @@ const handleClick = async () => {
 	const { data: text } = await useFetch("/api/foo");
 	alert(text.value);
 };
+definePageMeta({
+	title: "Home",
+});
 const items = [
 	{ id: "ABC-1234", title: "Lorem 10", description: "This is the description for Card 1", teacherName: "Mr. Abc" },
 	{ id: "DEF-2345", title: "Ipsum 11", description: "This is the description for Card 2", teacherName: "Mr. Deffg" },

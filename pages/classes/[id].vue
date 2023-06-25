@@ -4,6 +4,9 @@ import { percentageToGrade } from "../../utils/gradeScale";
 
 const route = useRoute();
 const clazz = route.params.id;
+definePageMeta({
+	title: "Class Info - <id>",
+});
 const data = [
 	{
 		date: "2023-05-10",
@@ -32,10 +35,18 @@ const data = [
 ];
 const initialSortBy = ref("date");
 const initialSortingOrder = ref("asc" as const);
+const tab = ref(0);
 </script>
 
 <template>
 	<h1>Class: {{ clazz }}</h1>
+	<va-tabs v-model="tab" class="semester-selector">
+		<template #tabs>
+			<va-tab v-for="tab in ['Information', 'Marks']" :key="tab">
+				{{ tab }}
+			</va-tab>
+		</template>
+	</va-tabs>
 	<va-data-table
 		:columns="[
 		{ key: 'date', sortable: true },

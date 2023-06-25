@@ -1,3 +1,8 @@
+<script lang="ts" setup>
+definePageMeta({
+	title: "Classes",
+});
+</script>
 <template>
 	<MainContainer>
 		<h1>lorem</h1>

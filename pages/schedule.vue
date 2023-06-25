@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const tab = ref("Semester 1");
+const tab = ref(0);
 </script>
 <template>
 	<MainContainer>

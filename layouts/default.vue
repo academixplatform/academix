@@ -1,3 +1,6 @@
+<script setup lang="ts">
+const route = useRoute();
+</script>
 <template>
 	<main>
 		<Sidebar />
@@ -5,6 +8,7 @@
 			<va-navbar color="primary" shape class="mb-2">
 				<template #left>
 					<va-navbar-item class="logo">Academix</va-navbar-item>
+					<va-navbar-item>{{ String(route.meta.title).replace(/\<id\>/g, () => route.params.id.toString()) }}</va-navbar-item>
 				</template>
 				<template #right>
 					<va-navbar-item>idk</va-navbar-item>
