@@ -13,9 +13,7 @@ const events = [
 		startingDate: dateTimeFormat.format(x.startingDate),
 		endingDate: dateTimeFormat.format(x.endingDate),
 	}))
-	.sort((x, y) => {
-		x.startingDate < y.startingDate;
-	});
+	.sort((x, y) => +x.startingDate - +y.startingDate);
 
 const columns = [
 	{ key: "title", sortable: true },

@@ -7,21 +7,24 @@ const classes = [
 ];
 </script>
 <template>
-	<div class="current-classes">
-		<ClassCard
-			v-for="item in classes"
-			:key="item.id"
-			:id="item.id"
-			:title="item.title"
-			:teacher="{
-				name: item.teacherName,
-				email: 'jbiden@sd40.bc.ca',
-				phone: '(111) 111-1111',
-				profilePicture: null,
-			}"
-		>
-		</ClassCard>
-	</div>
+	<va-card class="class-list">
+		<va-card-title class="class-title">Current Classes</va-card-title>
+		<div class="current-classes">
+			<ClassCard
+				v-for="item in classes"
+				:key="item.id"
+				:id="item.id"
+				:title="item.title"
+				:teacher="{
+					name: item.teacherName,
+					email: 'jbiden@sd40.bc.ca',
+					phone: '(111) 111-1111',
+					profilePicture: null,
+				}"
+			>
+			</ClassCard>
+		</div>
+	</va-card>
 </template>
 
 <style scoped>
@@ -32,5 +35,8 @@ const classes = [
 	width: 100%;
 	margin-bottom: 30px;
 	min-width: 0;
+}
+.class-list {
+	flex-basis: 80%;
 }
 </style>

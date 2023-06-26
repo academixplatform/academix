@@ -4,6 +4,7 @@ import { percentageToGrade } from "../../utils/gradeScale";
 
 const route = useRoute();
 const clazz = route.params.id;
+const classData = { id: "ABC-1234", title: "Literary Studies 10", teacherName: "Mr. Abc", image: undefined };
 definePageMeta({
 	title: "Class Info - <id>",
 });
@@ -46,7 +47,20 @@ const tab = ref(0);
 
 <template>
 	<MainContainer>
-		<h1>Class: {{ clazz }}</h1>
+		<header class="class-header">
+			<div
+				class="header-content"
+				:style="{
+					backgroundImage: `linear-gradient(90deg, #000e, #000c 50%, transparent), url(${
+						classData.image ?? 'https://cdn.pixabay.com/photo/2017/02/24/02/37/classroom-2093744_1280.jpg'
+					})`,
+				}"
+			>
+				<p>
+					<em>{{ classData.title }}</em> - {{ clazz }}
+				</p>
+			</div>
+		</header>
 		<va-tabs v-model="tab" class="section-selector">
 			<template #tabs>
 				<va-tab v-for="tab in ['Information', 'Assignments', 'Marks', 'Teacher', 'Message Board']" :key="tab">
@@ -118,6 +132,22 @@ const tab = ref(0);
 </template>
 
 <style>
+.class-header {
+	width: 100%;
+	height: 16rem;
+	background-color: black;
+	margin-bottom: 1rem;
+}
+.header-content {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	padding: 1rem 1.5rem;
+	display: flex;
+	align-items: flex-end;
+	font-size: 2.5rem;
+	color: white;
+}
 .teacher-modal-name {
 	font-weight: bold;
 }
@@ -134,5 +164,8 @@ const tab = ref(0);
 }
 .section-selector {
 	width: 100%;
+}
+em {
+	font-weight: bold;
 }
 </style>

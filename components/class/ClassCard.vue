@@ -18,12 +18,8 @@ const router = useRouter();
 </script>
 <template>
 	<div class="card-container">
-		<va-card class="class-card" @click="router.push(`/classes/${props.id}`)">
-			<TeacherInfoModal :teacher="teacher" :enabled="showTeacherModal" @disabled="showTeacherModal = false">
-			</TeacherInfoModal>
-
+		<va-card class="class-card" @click="router.push(`/classes/${props.id}`)" stripe stripe-color="primary">
 			<va-card-title class="class-title">{{ title }}</va-card-title>
-			<va-card-content class="class-teacher" @click.stop="showTeacherModal = true">{{ teacher.name }}</va-card-content>
 			<va-image
 				:src="image ?? 'https://cdn.pixabay.com/photo/2017/02/24/02/37/classroom-2093744_1280.jpg'"
 				class="class-image"
@@ -33,6 +29,12 @@ const router = useRouter();
 </template>
 
 <style>
+.card-container {
+	cursor: pointer;
+}
+.card-container:hover {
+	transform: rotate(1deg);
+}
 .class-title {
 	font-size: 2em !important;
 	color: black;

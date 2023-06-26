@@ -6,7 +6,7 @@ definePageMeta({
 <template>
 	<MainContainer>
 		<div class="cards">
-			<ClassList />
+				<ClassList />
 			<div class="bottom-cards">
 				<div class="upcoming-events">
 					<UpcomingEventsCard></UpcomingEventsCard>
