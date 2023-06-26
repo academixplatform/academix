@@ -9,7 +9,7 @@ export default defineNuxtConfig({
 			autoprefixer: {},
 		},
 	},
-	modules: ["@vuestic/nuxt"],
+	modules: ["@vuestic/nuxt", "@sidebase/nuxt-auth"],
 	nitro: {
 		esbuild: {
 			options: {

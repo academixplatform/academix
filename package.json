@@ -10,6 +10,7 @@
 	},
 	"devDependencies": {
 		"@nuxt/devtools": "^0.6.3",
+		"@sidebase/nuxt-auth": "^0.6.0-beta.2",
 		"@types/node": "^20.3.1",
 		"nuxt": "^3.6.0",
 		"sass": "^1.63.6",
@@ -17,8 +18,10 @@
 		"typescript": "latest"
 	},
 	"dependencies": {
+		"@auth/sequelize-adapter": "^1.0.1",
 		"@vuestic/nuxt": "^1.0.14",
 		"mysql2": "^3.4.1",
+		"next-auth": "^4.22.1",
 		"sequelize": "^6.32.1"
 	},
 	"packageManager": "yarn@3.6.0"

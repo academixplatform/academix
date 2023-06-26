@@ -5,7 +5,7 @@ const route = useRoute();
 	<main>
 		<Sidebar />
 		<article>
-			<va-navbar color="primary" shape class="mb-2">
+			<va-navbar color="primary" class="navbar">
 				<template #left>
 					<va-navbar-item class="logo">Academix</va-navbar-item>
 					<va-navbar-item>{{ String(route.meta.title).replace(/\<id\>/g, () => route.params.id.toString()) }}</va-navbar-item>
@@ -13,10 +13,7 @@ const route = useRoute();
 				<template #right>
 					<va-navbar-item>idk</va-navbar-item>
 					<va-navbar-item>
-						<va-icon name="mdi-magnify" />
-					</va-navbar-item>
-					<va-navbar-item>
-						<va-icon name="mdi-account-circle-outline" />
+						<va-icon name="mi-warning" />
 					</va-navbar-item>
 				</template>
 			</va-navbar>
@@ -25,12 +22,16 @@ const route = useRoute();
 	</main>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.navbar {
+	width: 100%;
+}
 main {
 	display: flex;
 }
 article {
 	display: flex;
 	flex-direction: column;
+	flex-grow: 1;
 }
 </style>

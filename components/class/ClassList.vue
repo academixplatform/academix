@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-definePageMeta({
-	title: "Classes",
-});
 const classes = [
 	{ id: "ABC-1234", title: "Lorem 10", teacherName: "Mr. Abc" },
 	{ id: "DEF-2345", title: "Ipsum 11", teacherName: "Mr. Deffg" },
@@ -10,24 +7,21 @@ const classes = [
 ];
 </script>
 <template>
-	<MainContainer>
-		<h1>lorem</h1>
-		<div class="current-classes">
-			<ClassCard
-				v-for="item in classes"
-				:key="item.id"
-				:id="item.id"
-				:title="item.title"
-				:teacher="{
-					name: item.teacherName,
-					email: 'jbiden@sd40.bc.ca',
-					phone: '(111) 111-1111',
-					profilePicture: null,
-				}"
-			>
-			</ClassCard>
-		</div>
-	</MainContainer>
+	<div class="current-classes">
+		<ClassCard
+			v-for="item in classes"
+			:key="item.id"
+			:id="item.id"
+			:title="item.title"
+			:teacher="{
+				name: item.teacherName,
+				email: 'jbiden@sd40.bc.ca',
+				phone: '(111) 111-1111',
+				profilePicture: null,
+			}"
+		>
+		</ClassCard>
+	</div>
 </template>
 
 <style scoped>

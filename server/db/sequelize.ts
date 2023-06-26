@@ -2,13 +2,13 @@ import { DataTypes, Sequelize } from "sequelize";
 import * as config from "../../config.json" assert { type: "json" };
 
 export const sequelize = new Sequelize(
-	`mysql://${config.username}:${config.password}@${config.host}:${config.port}/${config.database}`,
+	`mysql://${config.studentname}:${config.password}@${config.host}:${config.port}/${config.database}`,
 	{ logging: false }
 ); // Example for postgres
 sequelize.authenticate();
 
-export const User = sequelize.define(
-	"user",
+export const Student = sequelize.define(
+	"student",
 	{
 		id: {
 			type: DataTypes.INTEGER,
@@ -16,15 +16,22 @@ export const User = sequelize.define(
 			primaryKey: true,
 		},
 		firstName: {
-			type: DataTypes.STRING,
+			type: DataTypes.TEXT,
 			allowNull: false,
 		},
 		lastName: {
-			type: DataTypes.STRING,
+			type: DataTypes.TEXT,
+			allowNull: false,
+		},
+		email: {
+			type: DataTypes.TEXT,
+			allowNull: false,
+
 		},
 		password: {
-			type: DataTypes.STRING(20),
-		},
+			type: DataTypes.STRING(60),
+			allowNull: false,
+		}
 	},
 	{}
 );
@@ -53,7 +60,11 @@ export const Teacher = sequelize.define(
             primaryKey: true,
             autoIncrement: true,
 		},
-		name: {
+		firstName: {
+			type: DataTypes.TEXT,
+			allowNull: false,
+		},
+		lastName: {
 			type: DataTypes.TEXT,
 			allowNull: false,
 		},
@@ -64,7 +75,11 @@ export const Teacher = sequelize.define(
         phone: {
             type: DataTypes.TEXT,
             allowNull: false
-        }
+        },
+		password: {
+			type: DataTypes.STRING(60),
+			allowNull: false,
+		}
 	},
 	{}
 );
@@ -112,17 +127,17 @@ export const Grade = sequelize.define(
     }
 )
 
-User.hasMany(Attendance);
-Attendance.belongsTo(User);
+Student.hasMany(Attendance);
+Attendance.belongsTo(Student);
 Course.hasMany(Attendance);
 Attendance.belongsTo(Course);
 
 
-const UserCourses = sequelize.define("usercourses", {
-	userId: {
+const StudentCourses = sequelize.define("studentcourses", {
+	studentId: {
 		type: DataTypes.INTEGER,
 		references: {
-			model: User,
+			model: Student,
 			key: "id",
 		},
 	},
@@ -135,7 +150,7 @@ const UserCourses = sequelize.define("usercourses", {
 	},
 });
 
-Course.belongsToMany(User, { through: UserCourses });
-User.belongsToMany(Course, { through: UserCourses });
+Course.belongsToMany(Student, { through: StudentCourses });
+Student.belongsToMany(Course, { through: StudentCourses });
 
 sequelize.sync({ force: true });

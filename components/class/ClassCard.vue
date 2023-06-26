@@ -3,7 +3,6 @@ import TeacherInfoModal from "../floatable/TeacherInfoModal.vue";
 const props = defineProps<{
 	id: string;
 	title: string;
-	description: string;
 	image?: string;
 	teacher: {
 		name: string;
@@ -18,19 +17,19 @@ const showTeacherModal = ref(false);
 const router = useRouter();
 </script>
 <template>
-	<TeacherInfoModal :teacher="teacher" :enabled="showTeacherModal" @disabled="showTeacherModal = false"> </TeacherInfoModal>
-	<va-card class="class-card">
-		<va-card-title class="class-title">{{ title }}</va-card-title>
-		<va-card-content class="class-teacher" @click="showTeacherModal = true">{{ teacher.name }}</va-card-content>
-		<va-image
-			:src="image ?? 'https://cdn.pixabay.com/photo/2017/02/24/02/37/classroom-2093744_1280.jpg'"
-			class="class-image"
-		/>
-		<va-card-content>{{ description }}</va-card-content>
-		<va-card-actions align="center">
-			<va-button @click="router.push(`/classes/${props.id}`)">View</va-button>
-		</va-card-actions>
-	</va-card>
+	<div class="card-container">
+		<va-card class="class-card" @click="router.push(`/classes/${props.id}`)">
+			<TeacherInfoModal :teacher="teacher" :enabled="showTeacherModal" @disabled="showTeacherModal = false">
+			</TeacherInfoModal>
+
+			<va-card-title class="class-title">{{ title }}</va-card-title>
+			<va-card-content class="class-teacher" @click.stop="showTeacherModal = true">{{ teacher.name }}</va-card-content>
+			<va-image
+				:src="image ?? 'https://cdn.pixabay.com/photo/2017/02/24/02/37/classroom-2093744_1280.jpg'"
+				class="class-image"
+			/>
+		</va-card>
+	</div>
 </template>
 
 <style>
@@ -53,7 +52,14 @@ const router = useRouter();
 	user-select: none;
 }
 
-.class-card {
-	flex-basis: auto;
+.card-container {
+	padding: 0.5rem;
+	flex-basis: 25%;
+	flex-shrink: 0;
+	max-width: 300px;
+}
+
+.class-card:hover {
+	background-color: "lightgrey" !important;
 }
 </style>

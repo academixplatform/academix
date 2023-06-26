@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 const tab = ref(0);
+definePageMeta({
+	title: "Current Schedule",
+});
 </script>
 <template>
 	<MainContainer>
-		<h1>Current Schedule</h1>
 		<va-tabs v-model="tab" class="semester-selector">
 			<template #tabs>
 				<va-tab v-for="tab in ['Semester 1', 'Semester 2']" :key="tab">

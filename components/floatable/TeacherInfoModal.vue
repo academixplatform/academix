@@ -45,7 +45,7 @@ const enabled = computed({
 </style>
 
 <template>
-	<va-modal ref="modal" v-model="localEnable" hide-default-actions:true>
+	<va-modal ref="modal" v-model="localEnable" cancel-text="">
 		<div id="teacher-modal-header">
 			<img
 				id="teacher-modal-profilepicture"
