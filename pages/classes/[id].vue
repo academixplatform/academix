@@ -4,7 +4,13 @@ import { percentageToGrade } from "../../utils/gradeScale";
 
 const route = useRoute();
 const clazz = route.params.id;
-const classData = { id: "ABC-1234", title: "Literary Studies 10", teacherName: "Mr. Abc", image: undefined };
+const classData = {
+	id: "ABC-1234",
+	title: "Literary Studies 10",
+	description: "This is a description.",
+	teacherName: "Mr. Abc",
+	image: undefined,
+};
 definePageMeta({
 	title: "Class Info - <id>",
 });
@@ -34,6 +40,7 @@ const data = [
 		maxMarks: 55,
 	},
 ];
+const totalMarks = data.reduce((l, c) => l + c.marks, 0) / data.reduce((l, c) => l + c.maxMarks, 0);
 const teacher = {
 	name: "J. Biden",
 	email: "jbiden@sd40.bc.ca",
@@ -61,7 +68,7 @@ const tab = ref(0);
 				</p>
 			</div>
 		</header>
-		<va-card>
+		<va-card class="class-content" stripe stripe-color="primary">
 			<va-tabs v-model="tab" class="section-selector">
 				<template #tabs>
 					<va-tab v-for="tab in ['Information', 'Assignments', 'Marks', 'Teacher', 'Message Board']" :key="tab">
@@ -69,6 +76,17 @@ const tab = ref(0);
 					</va-tab>
 				</template>
 			</va-tabs>
+			<article v-if="tab === 0">
+				{{ classData.description }}
+			</article>
+			<article v-if="tab === 2" class="marks-article">
+				<va-progress-circle :model-value="totalMarks * 100" :thickness="0.2" :size="256" class="percentage-circle">
+					{{ percentageToGrade(totalMarks * 100) }}
+				</va-progress-circle>
+				<va-card stripe stripe-color="secondary">
+					
+				</va-card>
+			</article>
 			<article v-if="tab === 3">
 				<div id="teacher-modal-header">
 					<img
@@ -88,6 +106,7 @@ const tab = ref(0);
 				</div>
 			</article>
 			<va-data-table
+				v-if="tab === 1"
 				:columns="[
 		{ key: 'date', sortable: true },
 		{ key: 'assignment', sortable: true },
@@ -134,10 +153,10 @@ const tab = ref(0);
 	</MainContainer>
 </template>
 
-<style>
+<style lang="scss">
 .class-header {
 	width: 100%;
-	height: 16rem;
+	height: 12rem;
 	background-color: black;
 	margin-bottom: 1rem;
 	border-top-right-radius: var(--va-card-border-radius);
@@ -152,6 +171,13 @@ const tab = ref(0);
 	align-items: flex-end;
 	font-size: 2.5rem;
 	color: white;
+}
+.class-content {
+	padding: 0.5rem;
+	article {
+		padding: 0.5rem;
+		padding-top: 1rem;
+	}
 }
 .teacher-modal-name {
 	font-weight: bold;
@@ -171,6 +197,10 @@ const tab = ref(0);
 	width: 100%;
 }
 em {
+	font-weight: bold;
+}
+.percentage-circle .va-progress-circle__info {
+	font-size: 80px;
 	font-weight: bold;
 }
 </style>

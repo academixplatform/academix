@@ -16,11 +16,12 @@ export default defineNuxtConfig({
 				target: "esnext",
 			},
 		},
+		moduleSideEffects: ["reflect-metadata"],
 	},
 	components: [
 		{
 			path: "~/components",
 			pathPrefix: false,
 		},
-	],
+	]
 });

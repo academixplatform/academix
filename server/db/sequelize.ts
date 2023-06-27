@@ -1,40 +1,21 @@
 import { DataTypes, Sequelize } from "sequelize";
 import * as config from "../../config.json" assert { type: "json" };
+import { models } from "@auth/sequelize-adapter";
 
 export const sequelize = new Sequelize(
-	`mysql://${config.studentname}:${config.password}@${config.host}:${config.port}/${config.database}`,
+	`mysql://${config.username}:${config.password}@${config.host}:${config.port}/${config.database}`,
 	{ logging: false }
-); // Example for postgres
+);
 sequelize.authenticate();
 
-export const Student = sequelize.define(
-	"student",
+export const User = sequelize.define(
+	"user",
 	{
-		id: {
-			type: DataTypes.INTEGER,
-			autoIncrement: true,
-			primaryKey: true,
-		},
-		firstName: {
-			type: DataTypes.TEXT,
-			allowNull: false,
-		},
-		lastName: {
-			type: DataTypes.TEXT,
-			allowNull: false,
-		},
-		email: {
-			type: DataTypes.TEXT,
-			allowNull: false,
-
-		},
-		password: {
-			type: DataTypes.STRING(60),
-			allowNull: false,
-		}
+		...models.User,
 	},
 	{}
 );
+/*
 
 export const Course = sequelize.define(
 	"course",
@@ -152,5 +133,5 @@ const StudentCourses = sequelize.define("studentcourses", {
 
 Course.belongsToMany(Student, { through: StudentCourses });
 Student.belongsToMany(Course, { through: StudentCourses });
-
-sequelize.sync({ force: true });
+*/
+sequelize.query("SET FOREIGN_KEY_CHECKS=0").then(() => sequelize.sync({ force: true }));

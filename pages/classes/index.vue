@@ -11,7 +11,7 @@ const classes = [
 </script>
 <template>
 	<MainContainer>
-		<h1>lorem</h1>
+		
 		<div class="current-classes">
 			<ClassCard
 				v-for="item in classes"

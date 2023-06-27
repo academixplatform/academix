@@ -23,7 +23,7 @@ const columns = [
 </script>
 
 <template>
-	<va-card class="upcoming-events-card">
+	<va-card class="upcoming-events-card" stripe stripe-color="secondary">
 		<va-card-title>Upcoming Calendar Events</va-card-title>
 		<va-card-content>
 			<va-data-table :items="events" :columns="columns">

@@ -1,5 +1,5 @@
 <template>
-	<va-card class="assignments-card">
+	<va-card class="assignments-card" stripe stripe-color="secondary">
 		<va-card-title>Pending Assignments</va-card-title>
 		<va-card-content>
 			<va-data-table :columns="columns" :items="assignments">

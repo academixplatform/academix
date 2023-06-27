@@ -7,7 +7,7 @@ const route = useRoute();
 		<article>
 			<va-navbar color="primary" class="navbar">
 				<template #left>
-					<va-navbar-item class="logo">Academix</va-navbar-item>
+					<va-navbar-item class="logo"><Logo /></va-navbar-item>
 					<va-navbar-item class="page-title">{{ String(route.meta.title).replace(/\<id\>/g, () => route.params.id.toString()) }}</va-navbar-item>
 				</template>
 				<template #right>
@@ -25,9 +25,12 @@ const route = useRoute();
 <style lang="scss">
 .page-title {
 	font-weight: bold;
+    display: flex;
+    align-items: center;
 }
 .navbar {
 	width: 100%;
+	--va-navbar-padding-y: 1rem;
 }
 main {
 	display: flex;
