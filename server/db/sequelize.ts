@@ -1,18 +1,156 @@
-import { DataTypes, Sequelize } from "sequelize";
+import {
+	CreationOptional,
+	DataTypes,
+	ForeignKey,
+	InferAttributes,
+	InferCreationAttributes,
+	Model,
+	NonAttribute,
+	Sequelize,
+} from "sequelize";
 
 const sequelize = new Sequelize({
 	dialect: "sqlite",
-	storage: "../db/data.sqlite",
+	storage: "./.db/data.sqlite",
 	logging: false,
 });
 sequelize.authenticate();
+interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> {
+	id: CreationOptional<number>;
+	name: string;
+}
 
-export const User = sequelize.define(
+export const User = sequelize.define<UserModel>(
 	"user",
 	{
+		id: {
+			type: DataTypes.INTEGER,
+			autoIncrement: true,
+			primaryKey: true,
+		},
+		name: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
 	},
 	{}
 );
+interface TeacherModel extends Model<InferAttributes<TeacherModel>, InferCreationAttributes<TeacherModel>> {
+	id: CreationOptional<number>;
+	name: string;
+	email: string;
+	phone: string;
+}
+
+export const Teacher = sequelize.define<TeacherModel>(
+	"teacher",
+	{
+		id: {
+			type: DataTypes.INTEGER,
+			autoIncrement: true,
+			primaryKey: true,
+		},
+		name: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		email: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		phone: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+	},
+	{}
+);
+interface CourseModel extends Model<InferAttributes<CourseModel>, InferCreationAttributes<CourseModel>> {
+	id: string;
+	name: string;
+	description: string;
+	image: string;
+	teacherId: NonAttribute<ForeignKey<number>>;
+}
+
+export const Course = sequelize.define<CourseModel>(
+	"course",
+	{
+		id: {
+			type: DataTypes.STRING,
+			primaryKey: true,
+		},
+		name: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		description: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		image: {
+			type: DataTypes.STRING,
+		},
+	},
+	{}
+);
+
+Course.belongsTo(Teacher);
+
+const UserCourse = sequelize.define("usercourse", {
+	userId: {
+		type: DataTypes.INTEGER,
+		references: {
+			model: User,
+			key: "id",
+		},
+	},
+	courseId: {
+		type: DataTypes.STRING,
+		references: {
+			model: Course,
+			key: "id",
+		},
+	},
+});
+
+Course.belongsToMany(User, { through: UserCourse });
+User.belongsToMany(Course, { through: UserCourse });
+interface AssignmentModel extends Model<InferAttributes<AssignmentModel>, InferCreationAttributes<AssignmentModel>> {
+	id: CreationOptional<number>;
+	name: string;
+	marks: number;
+	maxMarks: number;
+	userId: NonAttribute<ForeignKey<number>>;
+	user: NonAttribute<UserModel>;
+	courseId: NonAttribute<ForeignKey<string>>;
+}
+
+export const Assignment = sequelize.define<AssignmentModel>(
+	"assignment",
+	{
+		id: {
+			type: DataTypes.NUMBER,
+			autoIncrement: true,
+			primaryKey: true,
+		},
+		name: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		marks: {
+			type: DataTypes.NUMBER,
+			allowNull: false,
+		},
+		maxMarks: {
+			type: DataTypes.NUMBER,
+			allowNull: false,
+		},
+	},
+	{}
+);
+Assignment.belongsTo(User);
+Assignment.belongsTo(Course);
 /*
 
 export const Course = sequelize.define(
@@ -132,4 +270,22 @@ const StudentCourses = sequelize.define("studentcourses", {
 Course.belongsToMany(Student, { through: StudentCourses });
 Student.belongsToMany(Course, { through: StudentCourses });
 */
- sequelize.sync({ force: true });
+sequelize.sync({ force: true }).then(async x => {
+	const user = await User.upsert({
+		name: "Bob Jane",
+		id: 0,
+	});
+	const teacher = await Teacher.upsert({
+		id: 0,
+		name: "Mr. Fisher",
+		email: "bfisher@example.com",
+		phone: "(100) 344-2934"
+	});
+	const course = await Course.upsert({
+		id: "AHHC-4433",
+		name: "Precalculus 10",
+		description: "todo",
+		image: "",
+		
+	});
+});
