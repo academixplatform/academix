@@ -22,6 +22,4 @@ logs
 .env.*
 !.env.example
 
-.yarn
-
 .db
