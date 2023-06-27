@@ -7,7 +7,7 @@ const classes = [
 ];
 </script>
 <template>
-	<va-card class="class-list">
+	<va-card class="class-list" stripe stripe-color="secondary">
 		<va-card-title class="class-title">Current Classes</va-card-title>
 		<div class="current-classes">
 			<ClassCard
@@ -33,10 +33,10 @@ const classes = [
 	flex-wrap: wrap;
 	justify-content: center;
 	width: 100%;
-	margin-bottom: 30px;
 	min-width: 0;
 }
 .class-list {
 	flex-basis: 80%;
+	padding: 12px;
 }
 </style>

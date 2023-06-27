@@ -26,9 +26,17 @@ const columns = [
 	<va-card class="upcoming-events-card">
 		<va-card-title>Upcoming Calendar Events</va-card-title>
 		<va-card-content>
-			<va-data-table :items="events" :columns="columns"> </va-data-table>
+			<va-data-table :items="events" :columns="columns">
+				<template #cell(title)="{ value }">
+					<p class="boldname">{{ value }}</p>
+				</template>
+			</va-data-table>
 		</va-card-content>
 	</va-card>
 </template>
 
-<style></style>
+<style>
+.boldname {
+	font-weight: bold;
+}
+</style>

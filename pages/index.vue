@@ -6,7 +6,7 @@ definePageMeta({
 <template>
 	<MainContainer>
 		<div class="cards">
-				<ClassList />
+			<ClassList />
 			<div class="bottom-cards">
 				<div class="upcoming-events">
 					<UpcomingEventsCard></UpcomingEventsCard>
@@ -23,6 +23,7 @@ definePageMeta({
 .cards {
 	display: flex;
 	flex-wrap: wrap;
+	gap: 1rem;
 }
 
 .bottom-cards {
