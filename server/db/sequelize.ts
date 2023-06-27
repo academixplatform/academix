@@ -1,17 +1,15 @@
 import { DataTypes, Sequelize } from "sequelize";
-import * as config from "../../config.json" assert { type: "json" };
-import { models } from "@auth/sequelize-adapter";
 
-export const sequelize = new Sequelize(
-	`mysql://${config.username}:${config.password}@${config.host}:${config.port}/${config.database}`,
-	{ logging: false }
-);
+const sequelize = new Sequelize({
+	dialect: "sqlite",
+	storage: "../db/data.sqlite",
+	logging: false,
+});
 sequelize.authenticate();
 
 export const User = sequelize.define(
 	"user",
 	{
-		...models.User,
 	},
 	{}
 );
@@ -134,4 +132,4 @@ const StudentCourses = sequelize.define("studentcourses", {
 Course.belongsToMany(Student, { through: StudentCourses });
 Student.belongsToMany(Course, { through: StudentCourses });
 */
-sequelize.query("SET FOREIGN_KEY_CHECKS=0").then(() => sequelize.sync({ force: true }));
+ sequelize.sync({ force: true });

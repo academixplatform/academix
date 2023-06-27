@@ -83,8 +83,11 @@ const tab = ref(0);
 				<va-progress-circle :model-value="totalMarks * 100" :thickness="0.2" :size="256" class="percentage-circle">
 					{{ percentageToGrade(totalMarks * 100) }}
 				</va-progress-circle>
-				<va-card stripe stripe-color="secondary">
-					
+				<va-card class="marks-card">
+					<va-card-title>Current Marks</va-card-title>
+					<em>Current Grade</em>: {{ (totalMarks * 100).toFixed() }} ({{ percentageToGrade(totalMarks * 100) }})
+					<br />
+					<em>Marks</em>: {{ data.reduce((l, c) => l + c.marks, 0) }} / {{ data.reduce((l, c) => l + c.maxMarks, 0) }}
 				</va-card>
 			</article>
 			<article v-if="tab === 3">
@@ -171,6 +174,13 @@ const tab = ref(0);
 	align-items: flex-end;
 	font-size: 2.5rem;
 	color: white;
+}
+.marks-article {
+	display: flex;
+	flex-direction: row;
+}
+.marks-card {
+	padding: 0.5rem;
 }
 .class-content {
 	padding: 0.5rem;
