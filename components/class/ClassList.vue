@@ -36,7 +36,7 @@ const classes = [
 	min-width: 0;
 }
 .class-list {
-	flex-basis: 80%;
+	flex-basis: 100%;
 	padding: 12px;
 }
 </style>
