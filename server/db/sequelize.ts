@@ -12,7 +12,7 @@ import {
 
 console.log(Object.keys(pg.default));
 console.log(pg.default);
-const sequelize = new Sequelize(process.env.POSTGRES_URL + "?sslmode=require" ?? "", {
+const sequelize = new Sequelize(process.env.POSTGRES_URL ? process.env.POSTGRES_URL + "?sslmode=require" : "postgres://vshacks2023:crabland2@localhost:5432/vshacks2023", {
 	logging: false,
 	dialectModule: pg.default,
 });
@@ -88,7 +88,7 @@ export const Course = sequelize.define<CourseModel>(
 			allowNull: false,
 		},
 		description: {
-			type: DataTypes.STRING,
+			type: DataTypes.TEXT,
 			allowNull: false,
 		},
 		image: {
