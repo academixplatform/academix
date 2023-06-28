@@ -14,7 +14,7 @@ import {
 console.log(Object.keys(pg));
 const sequelize = new Sequelize(process.env.POSTGRES_URL ?? "", {
 	logging: false,
-	dialectModule: pg.default,
+	dialectModule: pg,
 });
 sequelize.authenticate();
 export interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> {
