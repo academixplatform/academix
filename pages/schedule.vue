@@ -96,7 +96,7 @@ const router = useRouter();
 				]"
 			>
 				<template #cell(info)="{ value }">
-					<va-button size="small" @click="router.push(`/classes/${value}`)"> See Info </va-button>
+					<va-button v-if="value !== '-'" size="small" @click="router.push(`/classes/${value}`)"> See Info </va-button>
 				</template></va-data-table
 			>
 		</va-card>

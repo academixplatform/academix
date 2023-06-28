@@ -22,6 +22,7 @@ logs
 .env.*
 !.env.example
 
-.yarn
-
 .db
+
+.yarn/cache
+.yarn/unplugged
