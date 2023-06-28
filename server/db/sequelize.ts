@@ -11,10 +11,10 @@ import {
 } from "sequelize";
 
 
-console.log(Object.keys(pg));
+console.log(Object.keys(pg.default));
 const sequelize = new Sequelize(process.env.POSTGRES_URL ?? "", {
 	logging: false,
-	dialectModule: pg,
+	dialectModule: pg.default,
 });
 sequelize.authenticate();
 export interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> {
