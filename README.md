@@ -1,63 +1,46 @@
-# Nuxt 3 Minimal Starter
+# Academix
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Inspiration
+As students ourselves, we have first-hand experience with the horrors of Microsoft Teams and MyEducation. Unresponsive, slow and inaccessible, we thought that there must be a better solution.
 
-## Setup
+## What it does
 
-Make sure to install the dependencies:
+A fast, responsive, accessible and user-friendly learning platform!
 
-```bash
-# npm
-npm install
+Features:
+* Classes
+* Assignments
+* Schedules
+* Attendance
+** Excuse absences online!
+* Student record
+* Chats with other students
+* Graduation progress
+* Volunteer hours
+* Teaching material upload
 
-# pnpm
-pnpm install
+Academix is responsive, high-performance, and accessible for screen readers.
 
-# yarn
-yarn install
-```
+## How we built it
 
-## Development Server
+Academix is made with Nuxt. We used Vuestic as the component library, and REST for the API. The backend is powered by Sequelize and MySQL. The entire project is hosted on Vercel!
 
-Start the development server on `http://localhost:3000`:
+## Challenges we ran into
 
-```bash
-# npm
-npm run dev
+We spent much work on crafting a user interface design that was truly intuitive! While it was time-consuming, we don't regret it one bit.
 
-# pnpm
-pnpm run dev
+## Accomplishments that we're proud of
 
-# yarn
-yarn dev
-```
+We're really proud of Academix's performance. We strived to make it as best as possible for people on low-end devices.
 
-## Production
+## What we learned
 
-Build the application for production:
+A lot of our team wasn't familiar with Nuxt before! We now are quite fluent.
 
-```bash
-# npm
-npm run build
+## What's next for Academix
 
-# pnpm
-pnpm run build
+We plan to propose our interface to the B.C. Ministry of Education and encourage them to move away from Follet as a contractor.
 
-# yarn
-yarn build
-```
+## Contributing
+See [CONTRIBUTING.MD](CONTRIBUTING.MD) and [SECURITY.MD](SECURITY.MD)! Our license is AGPL 3.0 ([LICENSE.MD](LICENSE.MD)).
 
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
