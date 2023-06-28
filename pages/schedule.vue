@@ -96,7 +96,9 @@ const router = useRouter();
 				]"
 			>
 				<template #cell(info)="{ value }">
-					<va-button v-if="value !== '-'" size="small" @click="router.push(`/classes/${value}`)"> See Info </va-button>
+					<va-button v-if="value !== '-'" size="small" @click="router.push(`/classes/${value}`)">
+						See Info
+					</va-button>
 				</template></va-data-table
 			>
 		</va-card>
@@ -105,6 +107,6 @@ const router = useRouter();
 
 <style scoped>
 .semester-selector {
-	width: 200px;
+	width: 100%;
 }
 </style>

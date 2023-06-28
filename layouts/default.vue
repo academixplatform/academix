@@ -20,6 +20,10 @@ const route = useRoute();
 				</template>
 			</va-navbar>
 			<slot />
+
+			<footer>
+				<!-- bonjour -->
+			</footer>
 		</article>
 	</main>
 </template>
