@@ -10,10 +10,9 @@ import {
 	Sequelize,
 } from "sequelize";
 
-
 console.log(Object.keys(pg.default));
-console.log(pg.default)
-const sequelize = new Sequelize((process.env.POSTGRES_URL + "?sslmode=require") ?? "", {
+console.log(pg.default);
+const sequelize = new Sequelize(process.env.POSTGRES_URL + "?sslmode=require" ?? "", {
 	logging: false,
 	dialectModule: pg.default,
 });
@@ -36,7 +35,7 @@ export const User = sequelize.define<UserModel>(
 			allowNull: false,
 		},
 	},
-	{}
+	{ freezeTableName: true }
 );
 export interface TeacherModel extends Model<InferAttributes<TeacherModel>, InferCreationAttributes<TeacherModel>> {
 	id: CreationOptional<number>;
@@ -66,7 +65,7 @@ export const Teacher = sequelize.define<TeacherModel>(
 			allowNull: false,
 		},
 	},
-	{}
+	{ freezeTableName: true }
 );
 export interface CourseModel extends Model<InferAttributes<CourseModel>, InferCreationAttributes<CourseModel>> {
 	id: string;
@@ -102,7 +101,7 @@ export const Course = sequelize.define<CourseModel>(
 			type: DataTypes.INTEGER,
 		},
 	},
-	{}
+	{ freezeTableName: true }
 );
 
 Course.belongsTo(Teacher);
@@ -115,35 +114,39 @@ export interface UserCourseModel extends Model<InferAttributes<UserCourseModel>,
 	courseId: ForeignKey<string>;
 }
 
-export const UserCourse = sequelize.define<UserCourseModel>("usercourse", {
-	id: {
-		type: DataTypes.INTEGER,
-		autoIncrement: true,
-		primaryKey: true,
-	},
-	semester: {
-		type: DataTypes.INTEGER,
-		allowNull: false,
-	},
-	block: {
-		type: DataTypes.INTEGER,
-		allowNull: false,
-	},
-	userId: {
-		type: DataTypes.INTEGER,
-		references: {
-			model: User,
-			key: "id",
+export const UserCourse = sequelize.define<UserCourseModel>(
+	"usercourse",
+	{
+		id: {
+			type: DataTypes.INTEGER,
+			autoIncrement: true,
+			primaryKey: true,
+		},
+		semester: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+		},
+		block: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+		},
+		userId: {
+			type: DataTypes.INTEGER,
+			references: {
+				model: User,
+				key: "id",
+			},
+		},
+		courseId: {
+			type: DataTypes.STRING,
+			references: {
+				model: Course,
+				key: "id",
+			},
 		},
 	},
-	courseId: {
-		type: DataTypes.STRING,
-		references: {
-			model: Course,
-			key: "id",
-		},
-	},
-});
+	{ freezeTableName: true }
+);
 
 Course.hasMany(UserCourse);
 UserCourse.belongsTo(Course);
@@ -186,7 +189,7 @@ export const Assignment = sequelize.define<AssignmentModel>(
 			type: DataTypes.INTEGER,
 		},
 	},
-	{}
+	{ freezeTableName: true }
 );
 Assignment.belongsTo(User);
 Assignment.belongsTo(Course);
