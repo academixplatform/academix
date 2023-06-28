@@ -1,3 +1,4 @@
+import * as pg from 'pg';
 import {
 	CreationOptional,
 	DataTypes,
@@ -10,7 +11,8 @@ import {
 } from "sequelize";
 
 const sequelize = new Sequelize(process.env.POSTGRES_URL ?? "", {  
-	logging: false
+	logging: false,
+	dialectModule: pg
 });
 sequelize.authenticate();
 export interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> {
