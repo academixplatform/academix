@@ -12,6 +12,7 @@ const props = defineProps<{
 	};
 }>();
 
+
 const showTeacherModal = ref(false);
 
 const router = useRouter();

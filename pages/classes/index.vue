@@ -1,32 +1,43 @@
 <script lang="ts" setup>
+import type { CourseModel, TeacherModel } from "../../server/db/sequelize";
+
 definePageMeta({
 	title: "Classes",
 });
-const classes = [
-	{ id: "ABC-1234", title: "Lorem 10", teacherName: "Mr. Abc" },
-	{ id: "DEF-2345", title: "Ipsum 11", teacherName: "Mr. Deffg" },
-	{ id: "EFG-4555", title: "Abcdef 10", teacherName: "Mr. Hijkl" },
-	{ id: "AAA-1111", title: "Workplace Math 10", teacherName: "Mr. Doe" },
-];
+const router = useRouter();
+const classes = (await $fetch("/api/classes")) as (CourseModel & { teacher: TeacherModel })[];
 </script>
 <template>
 	<MainContainer>
-		
-		<div class="current-classes">
-			<ClassCard
-				v-for="item in classes"
-				:key="item.id"
-				:id="item.id"
-				:title="item.title"
-				:teacher="{
-					name: item.teacherName,
-					email: 'jbiden@sd40.bc.ca',
-					phone: '(111) 111-1111',
-					profilePicture: null,
-				}"
+		<va-card stripe>
+			<va-card-title>Class List</va-card-title>
+			<va-data-table
+				:items="classes.map((x, i) => ({ ...x, teacher: x.teacher.name }))"
+				:columns="[
+					{
+						key: 'id',
+					},
+					{
+						key: 'name',
+					},
+					{
+						key: 'room',
+					},
+					{
+						key: 'teacher',
+					},
+					{
+						key: 'id',
+						name: 'info',
+						label: 'info',
+					},
+				]"
 			>
-			</ClassCard>
-		</div>
+				<template #cell(info)="{ value }">
+					<va-button size="small" @click="router.push(`/classes/${value}`)"> See Info </va-button>
+				</template></va-data-table
+			>
+		</va-card>
 	</MainContainer>
 </template>
 

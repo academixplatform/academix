@@ -15,7 +15,7 @@ const sequelize = new Sequelize({
 	logging: false,
 });
 sequelize.authenticate();
-interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> {
+export interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> {
 	id: CreationOptional<number>;
 	name: string;
 }
@@ -35,7 +35,7 @@ export const User = sequelize.define<UserModel>(
 	},
 	{}
 );
-interface TeacherModel extends Model<InferAttributes<TeacherModel>, InferCreationAttributes<TeacherModel>> {
+export interface TeacherModel extends Model<InferAttributes<TeacherModel>, InferCreationAttributes<TeacherModel>> {
 	id: CreationOptional<number>;
 	name: string;
 	email: string;
@@ -65,7 +65,7 @@ export const Teacher = sequelize.define<TeacherModel>(
 	},
 	{}
 );
-interface CourseModel extends Model<InferAttributes<CourseModel>, InferCreationAttributes<CourseModel>> {
+export interface CourseModel extends Model<InferAttributes<CourseModel>, InferCreationAttributes<CourseModel>> {
 	id: string;
 	name: string;
 	description: string;
@@ -104,7 +104,7 @@ export const Course = sequelize.define<CourseModel>(
 
 Course.belongsTo(Teacher);
 
-interface UserCourseModel extends Model<InferAttributes<UserCourseModel>, InferCreationAttributes<UserCourseModel>> {
+export interface UserCourseModel extends Model<InferAttributes<UserCourseModel>, InferCreationAttributes<UserCourseModel>> {
 	id: number;
 	semester: number;
 	block: number;
@@ -112,7 +112,7 @@ interface UserCourseModel extends Model<InferAttributes<UserCourseModel>, InferC
 	courseId: ForeignKey<string>;
 }
 
-const UserCourse = sequelize.define<UserCourseModel>("usercourse", {
+export const UserCourse = sequelize.define<UserCourseModel>("usercourse", {
 	id: {
 		type: DataTypes.INTEGER,
 		autoIncrement: true,
@@ -142,9 +142,11 @@ const UserCourse = sequelize.define<UserCourseModel>("usercourse", {
 	},
 });
 
-Course.belongsToMany(User, { through: UserCourse });
-User.belongsToMany(Course, { through: UserCourse });
-interface AssignmentModel extends Model<InferAttributes<AssignmentModel>, InferCreationAttributes<AssignmentModel>> {
+Course.hasMany(UserCourse);
+UserCourse.belongsTo(Course);
+User.hasMany(UserCourse);
+UserCourse.belongsTo(User);
+export interface AssignmentModel extends Model<InferAttributes<AssignmentModel>, InferCreationAttributes<AssignmentModel>> {
 	id: CreationOptional<number>;
 	name: string;
 	marks: number;
@@ -321,7 +323,7 @@ sequelize.sync({ force: true }).then(async x => {
 			},
 			{
 				id: "GEFA-7676",
-				name: "Foundations of Mathematics and Pre-calculus 10",
+				name: "Precalculus 10",
 				room: 1144,
 				teacher: "Ms. Kinley",
 				description: "Through ten distinct units, students explore principles of algebra, geometry, and trigonometry and reinforce skills introduced in prior grades.",
@@ -329,7 +331,7 @@ sequelize.sync({ force: true }).then(async x => {
 			},
 			{
 				id: "FMNE-4443",
-				name: "Career Life Education 10",
+				name: "CLE 10",
 				room: 3322,
 				teacher: "Ms. Roberts",
 				description: "Today’s graduates must be able to adapt to ongoing change in many aspects of their lives. Purposeful career-life development, in which students learn how to set personally meaningful goals, recognize and cultivate relevant opportunities and supportive relationships, and continually re-evaluate and revise their plans, is a necessity for educated citizens in an ever-changing world.",

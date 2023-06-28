@@ -1,4 +1,4 @@
-export const dateTimeFormat = new Intl.DateTimeFormat(undefined, {
+export const dateTimeFormat = new Intl.DateTimeFormat("en-US", {
 	dateStyle: "short",
 	timeStyle: "short",
 });

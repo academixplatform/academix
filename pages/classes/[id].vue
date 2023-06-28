@@ -1,16 +1,10 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import { percentageToGrade } from "../../utils/gradeScale";
+import type { CourseModel, TeacherModel } from "../../server/db/sequelize";
 
 const route = useRoute();
 const clazz = route.params.id;
-const classData = {
-	id: "ABC-1234",
-	title: "Literary Studies 10",
-	description: "This is a description.",
-	teacherName: "Mr. Abc",
-	image: undefined,
-};
 definePageMeta({
 	title: "Class Info - <id>",
 });
@@ -41,12 +35,8 @@ const data = [
 	},
 ];
 const totalMarks = data.reduce((l, c) => l + c.marks, 0) / data.reduce((l, c) => l + c.maxMarks, 0);
-const teacher = {
-	name: "J. Biden",
-	email: "jbiden@sd40.bc.ca",
-	phone: "(111) 111-1111",
-	profilePicture: null,
-};
+const classData = (await $fetch("/api/class/" + clazz)) as CourseModel & { teacher: TeacherModel };
+const teacher = classData.teacher;
 const initialSortBy = ref("date");
 const initialSortingOrder = ref("asc" as const);
 const tab = ref(0);
@@ -64,14 +54,14 @@ const tab = ref(0);
 				}"
 			>
 				<p>
-					<em>{{ classData.title }}</em> - {{ clazz }}
+					<em>{{ classData.name }}</em> - {{ clazz }}
 				</p>
 			</div>
 		</header>
 		<va-card class="class-content" stripe stripe-color="primary">
 			<va-tabs v-model="tab" class="section-selector">
 				<template #tabs>
-					<va-tab v-for="tab in ['Information', 'Assignments', 'Marks', 'Teacher', 'Message Board']" :key="tab">
+					<va-tab v-for="tab in ['Information', 'Assignments', 'Marks', 'Teacher']" :key="tab">
 						{{ tab }}
 					</va-tab>
 				</template>
@@ -94,10 +84,7 @@ const tab = ref(0);
 				<div id="teacher-modal-header">
 					<img
 						id="teacher-modal-profilepicture"
-						:src="
-							teacher.profilePicture ??
-							'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
-						"
+						:src="'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'"
 					/>
 					<h2 class="teacher-modal-name">{{ teacher.name }}</h2>
 				</div>

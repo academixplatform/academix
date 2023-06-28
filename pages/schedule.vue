@@ -3,60 +3,21 @@ const tab = ref(0);
 definePageMeta({
 	title: "Current Schedule",
 });
-const courses = [
-	[
-		{
-			id: "ABCD-1234",
-			name: "Composition 10",
-			room: 2033,
-			teacher: "Mr. Lorb",
-		},
-		{
-			id: "GEFA-7676",
-			name: "Social Studies 10",
-			room: 1144,
-			teacher: "Ms. Fish",
-		},
-		{
-			id: "FMNE-4443",
-			name: "Career Life Education 10",
-			room: 3322,
-			teacher: "Ms. Bleb",
-		},
-		{
-			id: "FAFJ-3423",
-			name: "Composition 10",
-			room: 2033,
-			teacher: "Mr. Lorb",
-		},
-	],
-	[
-		{
-			id: "HIJK-1923",
-			name: "Precalculus 11",
-			room: 3000,
-			teacher: "Mr. Crab",
-		},
-		{
-			id: "EKFE-7354",
-			name: "Science 10",
-			room: 3322,
-			teacher: "Ms. Crile",
-		},
-		{
-			id: "DFAA-6765",
-			name: "Chemistry 11",
-			room: 2003,
-			teacher: "Mr. Fiwer",
-		},
-		{
-			id: "-",
-			name: "No Class Scheduled",
-			room: "-",
-			teacher: "-",
-		},
-	],
-];
+
+import type { UserCourseModel, CourseModel } from "~/server/db/sequelize";
+
+const classes = (await $fetch(`/api/userclass/0`)) as (typeof UserCourseModel & { course: typeof CourseModel })[];
+
+const toClasses = (semester: number) => {
+	const list = classes.filter(x => x.semester === semester);
+	return [1, 2, 3, 4].map(x => {
+		const found = list.find(y => y.block === x);
+		if (found !== undefined) return { ...found.course, teacher: found.course.teacher.name };
+		return { block: x, id: "-", room: "-", name: "Spare Block", teacher: "-" };
+	});
+};
+
+const courses = [toClasses(1), toClasses(2)];
 const router = useRouter();
 </script>
 <template>
