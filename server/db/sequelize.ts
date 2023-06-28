@@ -453,4 +453,3 @@ sequelize.sync({ force: true }).then(async x => {
 		})
 	);
 });
-throw new Error("got here 3")
