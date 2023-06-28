@@ -19,8 +19,9 @@
 	"dependencies": {
 		"@nuxt/kit": "^3.6.1",
 		"@vuestic/nuxt": "^1.0.14",
-		"sequelize": "^6.32.1",
-		"sqlite3": "^5.1.6"
+		"pg": "^8.11.1",
+		"pg-hstore": "^2.3.4",
+		"sequelize": "^6.32.1"
 	},
 	"packageManager": "yarn@3.6.0"
 }

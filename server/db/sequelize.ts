@@ -9,10 +9,8 @@ import {
 	Sequelize,
 } from "sequelize";
 
-const sequelize = new Sequelize({
-	dialect: "sqlite",
-	storage: "./.db/data.sqlite",
-	logging: false,
+const sequelize = new Sequelize(process.env.POSTGRES_URL ?? "", {  
+	logging: false
 });
 sequelize.authenticate();
 export interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> {
