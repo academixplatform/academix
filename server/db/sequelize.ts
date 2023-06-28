@@ -1,4 +1,4 @@
-import * as pg from 'pg';
+import * as pg from "pg";
 import {
 	CreationOptional,
 	DataTypes,
@@ -10,9 +10,11 @@ import {
 	Sequelize,
 } from "sequelize";
 
-const sequelize = new Sequelize(process.env.POSTGRES_URL ?? "", {  
+
+console.log(pg);
+const sequelize = new Sequelize(process.env.POSTGRES_URL ?? "", {
 	logging: false,
-	dialectModule: pg
+	dialectModule: pg,
 });
 sequelize.authenticate();
 export interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> {
@@ -318,32 +320,36 @@ sequelize.sync({ force: true }).then(async x => {
 				name: "Composition 10",
 				room: 2033,
 				teacher: "Mr. Smith",
-				description: "Composition 10 is designed to support students in their development of written communication through a critical process of questioning, exploring, and sampling. Within a supportive community of writers, students will work individually and collaboratively to explore and create coherent, purposeful compositions. Students will read and study compositions by other writers and consider a variety of styles as models for the development of their writing.",
-				image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Austria_-_G%C3%B6ttweig_Abbey_-_2015.jpg/640px-Austria_-_G%C3%B6ttweig_Abbey_-_2015.jpg"
+				description:
+					"Composition 10 is designed to support students in their development of written communication through a critical process of questioning, exploring, and sampling. Within a supportive community of writers, students will work individually and collaboratively to explore and create coherent, purposeful compositions. Students will read and study compositions by other writers and consider a variety of styles as models for the development of their writing.",
+				image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Austria_-_G%C3%B6ttweig_Abbey_-_2015.jpg/640px-Austria_-_G%C3%B6ttweig_Abbey_-_2015.jpg",
 			},
 			{
 				id: "GEFA-7676",
 				name: "Precalculus 10",
 				room: 1144,
 				teacher: "Ms. Kinley",
-				description: "Through ten distinct units, students explore principles of algebra, geometry, and trigonometry and reinforce skills introduced in prior grades.",
-				image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/L%C3%BCbeck%2C_Wissenschaftspfad%2C_Abakus_--_2017_--_0372.jpg/640px-L%C3%BCbeck%2C_Wissenschaftspfad%2C_Abakus_--_2017_--_0372.jpg"
+				description:
+					"Through ten distinct units, students explore principles of algebra, geometry, and trigonometry and reinforce skills introduced in prior grades.",
+				image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/L%C3%BCbeck%2C_Wissenschaftspfad%2C_Abakus_--_2017_--_0372.jpg/640px-L%C3%BCbeck%2C_Wissenschaftspfad%2C_Abakus_--_2017_--_0372.jpg",
 			},
 			{
 				id: "FMNE-4443",
 				name: "CLE 10",
 				room: 3322,
 				teacher: "Ms. Roberts",
-				description: "Today’s graduates must be able to adapt to ongoing change in many aspects of their lives. Purposeful career-life development, in which students learn how to set personally meaningful goals, recognize and cultivate relevant opportunities and supportive relationships, and continually re-evaluate and revise their plans, is a necessity for educated citizens in an ever-changing world.",
-				image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Architecture_Classroom_in_the_Carnegie_Mellon_College_of_Fine_Arts.jpg/640px-Architecture_Classroom_in_the_Carnegie_Mellon_College_of_Fine_Arts.jpg"
+				description:
+					"Today’s graduates must be able to adapt to ongoing change in many aspects of their lives. Purposeful career-life development, in which students learn how to set personally meaningful goals, recognize and cultivate relevant opportunities and supportive relationships, and continually re-evaluate and revise their plans, is a necessity for educated citizens in an ever-changing world.",
+				image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Architecture_Classroom_in_the_Carnegie_Mellon_College_of_Fine_Arts.jpg/640px-Architecture_Classroom_in_the_Carnegie_Mellon_College_of_Fine_Arts.jpg",
 			},
 			{
 				id: "FAFJ-3423",
 				name: "Science 10",
 				room: 2123,
 				teacher: "Ms. Mann",
-				description: "Science 10 is designed to support students in their development of scientific literacy. Students will study a variety of topics that address the big ideas of science. They will develop their scientific inquiry skills as they explore the relationships between science, technology, society, and the environment, and become aware of how science-related careers and research affect their lives.",
-				image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Openluchtmuseum_Arnhem_-_Laboratorium_Zuivelfabriek_Freia.jpg/639px-Openluchtmuseum_Arnhem_-_Laboratorium_Zuivelfabriek_Freia.jpg"
+				description:
+					"Science 10 is designed to support students in their development of scientific literacy. Students will study a variety of topics that address the big ideas of science. They will develop their scientific inquiry skills as they explore the relationships between science, technology, society, and the environment, and become aware of how science-related careers and research affect their lives.",
+				image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Openluchtmuseum_Arnhem_-_Laboratorium_Zuivelfabriek_Freia.jpg/639px-Openluchtmuseum_Arnhem_-_Laboratorium_Zuivelfabriek_Freia.jpg",
 			},
 		].map(async (x, i) => {
 			const ph = Math.tan(x.teacher.charCodeAt(4)) + Math.tan(x.teacher.charCodeAt(5));
@@ -363,7 +369,7 @@ sequelize.sync({ force: true }).then(async x => {
 					room: x.room,
 					teacherId: teacher.id,
 					description: x.description,
-					image: x.image
+					image: x.image,
 				})
 			)[0];
 		})
@@ -375,7 +381,7 @@ sequelize.sync({ force: true }).then(async x => {
 				courseId: x.id,
 				userId: user.id,
 				semester: 1,
-				block: i + 1
+				block: i + 1,
 			});
 		})
 	);
@@ -386,25 +392,28 @@ sequelize.sync({ force: true }).then(async x => {
 				name: "Intermediate Band 10",
 				room: 3000,
 				teacher: "Mr. Wilson",
-				description: "This course is designed to provide students with the opportunity to develop their musical skills through the study and performance of a variety of band music. Students will develop their technical skills, rhythmic skills, and musicality through the study of scales, technical exercises, and band repertoire. Students will also develop their ability to work collaboratively with others as they rehearse and perform with the band.",
-				image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Israel_Philharmonic_Orchestra.jpg/640px-Israel_Philharmonic_Orchestra.jpg"
+				description:
+					"This course is designed to provide students with the opportunity to develop their musical skills through the study and performance of a variety of band music. Students will develop their technical skills, rhythmic skills, and musicality through the study of scales, technical exercises, and band repertoire. Students will also develop their ability to work collaboratively with others as they rehearse and perform with the band.",
+				image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Israel_Philharmonic_Orchestra.jpg/640px-Israel_Philharmonic_Orchestra.jpg",
 			},
 			{
 				id: "EKFE-7354",
 				name: "Woodworking 10",
 				room: 3322,
 				teacher: "Ms. Reid",
-				description: "Woodworking 10 provides students with the opportunity to develop their woodworking skills through the study and construction of a variety of projects. Students will develop their technical skills, safety skills, and creativity through the study of woodworking techniques and the construction of projects. Students will also develop their ability to work collaboratively with others as they work in the shop.",
-				image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Puy_du_Fou.-_La_Cit%C3%A9_M%C3%A9di%C3%A9vale_%281%29.JPG/640px-Puy_du_Fou.-_La_Cit%C3%A9_M%C3%A9di%C3%A9vale_%281%29.JPG"
+				description:
+					"Woodworking 10 provides students with the opportunity to develop their woodworking skills through the study and construction of a variety of projects. Students will develop their technical skills, safety skills, and creativity through the study of woodworking techniques and the construction of projects. Students will also develop their ability to work collaboratively with others as they work in the shop.",
+				image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Puy_du_Fou.-_La_Cit%C3%A9_M%C3%A9di%C3%A9vale_%281%29.JPG/640px-Puy_du_Fou.-_La_Cit%C3%A9_M%C3%A9di%C3%A9vale_%281%29.JPG",
 			},
 			{
 				id: "DFAA-6765",
 				name: "Computer Science 10",
 				room: 2003,
 				teacher: "Mr. Figgs",
-				description: "Computer Science 10 is designed to provide students with the opportunity to develop their computational thinking skills through the study of computer science. Students will develop their ability to solve problems, design algorithms, write programs, and complete programming projects, using a variety of programming languages. Students will also develop their ability to work collaboratively with others as they develop and present their projects.",
-				image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/CERN_Server_03.jpg/640px-CERN_Server_03.jpg"
-			}
+				description:
+					"Computer Science 10 is designed to provide students with the opportunity to develop their computational thinking skills through the study of computer science. Students will develop their ability to solve problems, design algorithms, write programs, and complete programming projects, using a variety of programming languages. Students will also develop their ability to work collaboratively with others as they develop and present their projects.",
+				image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/CERN_Server_03.jpg/640px-CERN_Server_03.jpg",
+			},
 		].map(async (x, i) => {
 			const ph = Math.tan(x.teacher.charCodeAt(4)) + Math.tan(x.teacher.charCodeAt(5));
 			const phone = ((ph < 100000000 ? ph * 100000000 : ph) % 10000000000).toString();
@@ -423,7 +432,7 @@ sequelize.sync({ force: true }).then(async x => {
 					room: x.room,
 					teacherId: teacher.id,
 					description: x.description,
-					image: x.image
+					image: x.image,
 				})
 			)[0];
 		})
@@ -435,7 +444,7 @@ sequelize.sync({ force: true }).then(async x => {
 				courseId: x.id,
 				userId: user.id,
 				semester: 2,
-				block: i === 2 ? 4 : i + 1
+				block: i === 2 ? 4 : i + 1,
 			});
 		})
 	);
