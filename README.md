@@ -1,4 +1,6 @@
-# Academix
+<div align="center">
+<img src="logo.svg" alt="Logo" style="margin-left: auto; margin-right: auto;">
+</div>
 
 ## Inspiration
 As students ourselves, we have first-hand experience with the horrors of Microsoft Teams and MyEducation. Unresponsive, slow and inaccessible, we thought that there must be a better solution.
