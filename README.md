@@ -3,23 +3,26 @@
 </div>
 
 ## Inspiration
+
 As students ourselves, we have first-hand experience with the horrors of Microsoft Teams and MyEducation. Unresponsive, slow and inaccessible, we thought that there must be a better solution.
 
 ## What it does
 
 A fast, responsive, accessible and user-friendly learning platform!
+![Academix home screen](thumbnail.PNG)
 
 Features:
-* Classes
-* Assignments
-* Schedules
-* Attendance
-  * Excuse absences online!
-* Student record
-* Chats with other students
-* Graduation progress
-* Volunteer hours
-* Teaching material upload
+
+- Classes
+- Assignments
+- Schedules
+- Attendance
+  - Excuse absences online!
+- Student record
+- Chats with other students
+- Graduation progress
+- Volunteer hours
+- Teaching material upload
 
 Academix is responsive, high-performance, and accessible for screen readers.
 
@@ -44,5 +47,5 @@ A lot of our team wasn't familiar with Nuxt before! We now are quite fluent.
 We plan to propose our interface to the B.C. Ministry of Education and encourage them to move away from Follet as a contractor.
 
 ## Contributing
-See [CONTRIBUTING.MD](CONTRIBUTING.MD) and [SECURITY.MD](SECURITY.MD)! Our license is AGPL 3.0 ([LICENSE.MD](LICENSE.MD)).
 
+See [CONTRIBUTING.MD](CONTRIBUTING.MD) and [SECURITY.MD](SECURITY.MD)! Our license is AGPL 3.0 ([LICENSE.MD](LICENSE.MD)).
