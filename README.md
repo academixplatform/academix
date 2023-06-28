@@ -12,7 +12,7 @@ Features:
 * Assignments
 * Schedules
 * Attendance
-** Excuse absences online!
+  * Excuse absences online!
 * Student record
 * Chats with other students
 * Graduation progress
@@ -23,7 +23,7 @@ Academix is responsive, high-performance, and accessible for screen readers.
 
 ## How we built it
 
-Academix is made with Nuxt. We used Vuestic as the component library, and REST for the API. The backend is powered by Sequelize and MySQL. The entire project is hosted on Vercel!
+Academix is made with Nuxt. We used Vuestic as the component library, and REST for the API. The backend is powered by Sequelize and Postgres. The entire project is hosted on Vercel!
 
 ## Challenges we ran into
 
