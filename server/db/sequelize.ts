@@ -17,7 +17,6 @@ const sequelize = new Sequelize(process.env.POSTGRES_URL ? process.env.POSTGRES_
 	dialectModule: pg.default,
 });
 sequelize.authenticate();
-throw new Error("got here 1")
 export interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> {
 	id: CreationOptional<number>;
 	name: string;
