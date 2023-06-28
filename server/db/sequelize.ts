@@ -12,7 +12,8 @@ import {
 
 
 console.log(Object.keys(pg.default));
-const sequelize = new Sequelize(process.env.POSTGRES_URL ?? "", {
+console.log(pg.default)
+const sequelize = new Sequelize((process.env.POSTGRES_URL + "?sslmode=require") ?? "", {
 	logging: false,
 	dialectModule: pg.default,
 });
